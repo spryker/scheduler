@@ -52,6 +52,11 @@ class PhpScheduleMapper implements PhpScheduleMapperInterface
     protected const KEY_GLOBAL = 'global';
 
     /**
+     * @var string
+     */
+    protected const KEY_DESCRIPTION = 'description';
+
+    /**
      * @var \Spryker\Zed\Scheduler\Business\PhpScheduleReader\Filter\JobsFilterInterface
      */
     protected $jobsFilter;
@@ -139,6 +144,7 @@ class PhpScheduleMapper implements PhpScheduleMapperInterface
             ->setEnable($job[static::KEY_ENABLE] ?? false)
             ->setRepeatPattern($job[static::KEY_SCHEDULE] ?? null)
             ->setStore($storeName)
+            ->setDescription($job[static::KEY_DESCRIPTION] ?? null)
             ->setPayload($this->mapPayloadFromArray($job));
 
         if ($this->schedulerConfig->isJobRegionRequired()) {
@@ -162,6 +168,7 @@ class PhpScheduleMapper implements PhpScheduleMapperInterface
             static::KEY_SCHEDULE => '',
             static::KEY_STORES => '',
             static::KEY_ROLE => '',
+            static::KEY_DESCRIPTION => '',
         ]);
     }
 
